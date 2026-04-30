@@ -177,9 +177,9 @@ p  { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-light); line-he
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.05) 0%,
-    rgba(0,0,0,0.1) 40%,
-    rgba(0,0,0,0.55) 100%
+    rgba(0,0,0,0.50) 0%,
+    rgba(0,0,0,0.45) 45%,
+    rgba(0,0,0,0.70) 100%
   );
 }
 .hero-content {
@@ -529,6 +529,9 @@ p  { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-light); line-he
   font-size: 1rem;
   color: var(--stone);
   font-style: italic;
+  font-variant-numeric: tabular-nums;
+  min-width: 90px;             /* fits '1h 15 min' — keeps right edge aligned */
+  text-align: right;
 }
 
 /* ── BOOK ── */
@@ -763,12 +766,18 @@ footer {
   padding: 44px 36px;
   position: relative;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 .explore-card:hover { background: var(--dark); }
 .explore-card:hover h4 { color: var(--cream); }
 .explore-card:hover p { color: var(--stone); }
 .explore-card:hover .explore-num { color: rgba(255,255,255,0.08); }
-.explore-card:hover .explore-dist { color: var(--terracotta); border-color: var(--terracotta); }
+.explore-card:hover .explore-dist { color: var(--terracotta); border-color: var(--terracotta);
+  align-self: flex-start;
+  margin-top: auto;             /* anchor chip to bottom of card */
+  font-variant-numeric: tabular-nums;
+}
 .explore-num {
   font-family: var(--font-serif);
   font-size: 4rem;
@@ -914,4 +923,44 @@ footer {
 
 @media (max-width: 768px) {
   #hero::after { background: linear-gradient(to bottom, rgba(17,20,16,0.3) 0%, rgba(17,20,16,0.55) 100%); }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Isla Studio web design standards (vercel-labs ruleset, 2026-04-30):
+   - prefers-reduced-motion: respect user vestibular preferences
+   - color-scheme: form controls follow system theme
+   - tabular-nums: numeric content aligns cleanly
+   - touch-action: manipulation: kills 300ms tap delay on iOS
+   ────────────────────────────────────────────────────────────────── */
+:root { color-scheme: light; }
+
+.stat-num,
+.amenity-name,
+.review-rating,
+[class*="num"],
+[class*="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+a, button, input[type="submit"], .btn {
+  touch-action: manipulation;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reset native button styles for elements styled as non-button content */
+button.hero-scroll, button.nav-burger, button.lang-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Pre-push hook — runs the design audit gate.
+# git push triggers a Cloudflare Pages deploy, so this is the deploy gate.
+# Bypass: git push --no-verify
+exec "$(git rev-parse --show-toplevel)/predeploy.sh"
