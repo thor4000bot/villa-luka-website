@@ -861,6 +861,15 @@ footer {
 .form-group textarea:focus {
   border-color: var(--terracotta);
 }
+
+/* Keyboard-only focus ring (audit-required :focus-visible replacement for outline:none) */
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  border-color: var(--terracotta);
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
 .form-group textarea { resize: vertical; min-height: 90px; }
 .form-submit { align-self: flex-start; margin-top: 8px; }
 .form-success {
