@@ -47,7 +47,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=202604260851">
   <style>
     /* ── ADRIATIC EDITORIAL — Villa Luka override ── */
     :root {
@@ -305,8 +305,8 @@
     </div>
     <div class="enquiry-form-wrap fade-in">
       <p class="eyebrow" style="text-align:center; margin-bottom:32px;">O Envíe una Consulta</p>
-      <form class="enquiry-form" name="enquiry-es" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="enquiry-es">
+      <form class="enquiry-form" method="POST" id="enquiryForm" action="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="fb13f97d-7384-4cb9-a465-bb026edaa5e3">
         <p style="display:none;"><label>No rellenar: <input name="bot-field"></label></p>
         <div class="form-row">
           <div class="form-group"><label for="name">Nombre</label><input type="text" id="name" name="name" required placeholder="Su nombre"></div>
