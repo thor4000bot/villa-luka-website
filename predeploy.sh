@@ -16,7 +16,7 @@
 set -e
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-AUDIT="${DESIGN_AUDIT:-/Users/thor4000/.openclaw/workspace/isla-studio/design_audit.py}"
+AUDIT="${DESIGN_AUDIT:-$ROOT/../isla-studio/design_audit.py}"
 
 if [[ "${1:-}" == "--skip" ]]; then
   echo "⚠ Audit skipped via --skip flag."
