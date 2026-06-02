@@ -93,11 +93,11 @@ p  { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-light); line-he
 }
 .btn-terracotta:hover { background: #9e5d3a; }
 .btn-whatsapp {
-  background: #25D366;
+  background: #075E54;             /* WhatsApp dark teal — white text passes WCAG AA (7.5:1) */
   color: white;
   letter-spacing: 1.5px;
 }
-.btn-whatsapp:hover { background: #1ebe5d; }
+.btn-whatsapp:hover { background: #0d8a78; }
 
 /* ── NAVIGATION ── */
 #nav {
@@ -491,7 +491,9 @@ p  { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-light); line-he
 /* ── LOCATION ── */
 #location { background: var(--dark); padding: 80px 60px; color: var(--cream); }
 #location h2 { color: var(--cream); font-style: italic; margin-bottom: 12px; }
-#location .eyebrow { color: var(--terracotta); }
+#location .eyebrow { color: var(--terracotta-on-dark); }
+.editorial-text.dark .eyebrow,
+#gallery .gallery-hero .eyebrow { color: var(--terracotta-on-dark); }
 .location-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -587,7 +589,7 @@ p  { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-light); line-he
   letter-spacing: 1px;
   color: var(--text-light);
 }
-.book-contact a { color: var(--terracotta); }
+.book-contact a { color: var(--terracotta); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ── FOOTER ── */
 footer {
@@ -615,7 +617,8 @@ footer {
   display: block;
   margin-bottom: 16px;
 }
-.footer-brand p { font-size: 0.85rem; line-height: 1.8; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.8; color: var(--stone); }     /* AA on dark (4.6:1) */
+.footer-bottom, .footer-bottom span, .footer-bottom a { color: var(--stone); }      /* AA on dark (4.6:1) */
 .footer-col h4 {
   font-size: 0.62rem;
   letter-spacing: 3px;
