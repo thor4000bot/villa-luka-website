@@ -1,0 +1,18 @@
+# gitleaks config for this static Isla Studio site.
+# Keeps ALL built-in rules; only allowlists the public Cloudflare Web Analytics
+# beacon token, which gitleaks' generic-api-key rule otherwise flags as a secret.
+#
+# The data-cf-beacon token is a PUBLIC client-side identifier: it ships in the
+# page HTML to every visitor and can only attribute pageviews. It is NOT a
+# credential, so it must not block deploys or trip the daily security audit.
+#   <script ... data-cf-beacon='{"token": "<public site token>"}'></script>
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Cloudflare Web Analytics beacon token (data-cf-beacon) — public client-side identifier, not a secret"
+regexTarget = "line"
+regexes = [
+  '''data-cf-beacon''',
+]
