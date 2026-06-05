@@ -23,6 +23,24 @@ if [[ "${1:-}" == "--skip" ]]; then
   exit 0
 fi
 
+# ── Secret scan (gitleaks) — block the push if a real credential is present.
+# Honors this repo's .gitleaks.toml, which allowlists the public Cloudflare
+# Web Analytics beacon token. A genuine key (Stripe, Resend, CF API, …) fails.
+if command -v gitleaks >/dev/null 2>&1; then
+  echo "→ Scanning for secrets (gitleaks) in $(basename "$ROOT")..."
+  if gitleaks dir "$ROOT" --no-banner --redact --exit-code 1 >/tmp/gitleaks_predeploy.log 2>&1; then
+    echo "✓ No secrets detected."
+  else
+    echo
+    echo "✗ gitleaks found a potential secret. Push blocked. See /tmp/gitleaks_predeploy.log"
+    echo "  If it's a known public token, allowlist it in .gitleaks.toml."
+    echo "  Bypass (not recommended): git push --no-verify"
+    exit 1
+  fi
+else
+  echo "⚠ gitleaks not installed — secret scan skipped."
+fi
+
 if [[ ! -f "$AUDIT" ]]; then
   echo "⚠ design_audit.py not found at $AUDIT — gate disabled."
   echo "  Set DESIGN_AUDIT=/path/to/design_audit.py to override."
